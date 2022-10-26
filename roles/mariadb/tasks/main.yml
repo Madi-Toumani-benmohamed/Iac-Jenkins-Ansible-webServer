@@ -1,6 +1,6 @@
 ---
 # tasks file for mariadb
----
+
 
 - hosts: web
 
