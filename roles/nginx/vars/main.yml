@@ -4,3 +4,7 @@
 sites:
  - ben.lol
  - ben.cool
+
+sites_ae:
+ - available
+ - enabled

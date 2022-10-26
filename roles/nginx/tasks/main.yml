@@ -25,7 +25,7 @@
    path: /etc/nginx/sites-{{ item }}
    state: directory
   loop:
-   "{{ sites }}"
+   "{{ sites_ae }}"
 - name: modification nginx.conf
   lineinfile:
    path: /etc/nginx/nginx.conf
