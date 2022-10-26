@@ -5,3 +5,4 @@
       stage('install_mariadb') {
         sh "ansible-playbook -i inventaire playbook.yml"
       }
+      }
