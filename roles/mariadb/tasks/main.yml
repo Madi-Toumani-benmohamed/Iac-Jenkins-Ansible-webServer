@@ -1,12 +1,6 @@
 ---
 # tasks file for mariadb
 
-
-- hosts: web
-
-  vars:
-   root_password: 'root'
-
   tasks:
   - name: install mariadb
     yum:
@@ -30,4 +24,3 @@
      password: 12345
      priv: '*.*:ALL'
      state: present
-
