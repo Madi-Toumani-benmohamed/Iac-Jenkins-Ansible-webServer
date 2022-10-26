@@ -1,0 +1,6 @@
+---
+# vars file for nginx
+
+sites:
+ - ben.lol
+ - ben.cool

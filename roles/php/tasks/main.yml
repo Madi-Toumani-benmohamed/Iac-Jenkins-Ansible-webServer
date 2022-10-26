@@ -1,0 +1,41 @@
+---
+# tasks file for php
+
+
+- name: installer php
+  yum:
+   name: "{{ php_packets }}"
+   state: present
+
+- name: changement des valeurs user de fpm
+  lineinfile:
+   path: /etc/php-fpm.d/www.conf
+   regexp: '^user = apache'
+   line: ' user = nginx'
+
+- name: changement du group
+  lineinfile:
+   path: /etc/php-fpm.d/www.conf
+   regexp: '^group = apache'
+   line: ' group = nginx'
+- name: demarrer php-fpm
+  systemd:
+   name: php-fpm
+   state: started
+   enabled: yes
+- name: config php pour nginx
+  blockinfile:
+   path: /etc/nginx/nginx.conf
+   marker: "#<!-- {mark} ansible conf php -->"
+   insertafter: "^        root         /usr/share/nginx/html;"
+   block: |
+     location ~ \.php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param  PATH_INFO $fastcgi_path_info;
+            include        fastcgi_params;
+        }
+- name: restart nginx
+  systemd:
+   name: nginx
+   state: restarted
