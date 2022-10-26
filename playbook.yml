@@ -14,4 +14,4 @@
     systemd:
      name: mariadb
      state: started
-     enable: yes
+     enabled: yes
