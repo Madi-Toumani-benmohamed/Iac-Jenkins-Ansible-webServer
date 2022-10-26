@@ -1,26 +1,25 @@
 ---
 # tasks file for mariadb
 
-  tasks:
-  - name: install mariadb
-    yum:
-     name: " {{ item }} "
-     state: present
-    loop:
-     - mariadb-server
-     - python3-PyMySQL.noarch
-  - name: activation mariadb
-    systemd:
-     name: mariadb
-     state: started
-     enabled: yes
-  - name: ajout .my.cnf conf mariadb
-    copy:
-     src: .my.cnf
-     dest: /root/.my.cnf
-  - name: Ajout du user mariadb 'ludo' avec  password '12345'  et tout privileges
-    mysql_user:
-     name: ludo
-     password: 12345
-     priv: '*.*:ALL'
-     state: present
+- name: install mariadb
+  yum:
+   name: " {{ item }} "
+   state: present
+  loop:
+   - mariadb-server
+   - python3-PyMySQL.noarch
+- name: activation mariadb
+  systemd:
+   name: mariadb
+   state: started
+   enabled: yes
+- name: ajout .my.cnf conf mariadb
+  copy:
+   src: .my.cnf
+   dest: /root/.my.cnf
+- name: Ajout du user mariadb 'ludo' avec  password '12345'  et tout privileges
+  mysql_user:
+   name: ludo
+   password: 12345
+   priv: '*.*:ALL'
+   state: present
