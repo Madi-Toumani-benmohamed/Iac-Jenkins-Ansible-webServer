@@ -1,0 +1,17 @@
+---
+
+- hosts: web
+
+  vars:
+   root_password: 'root'
+
+  tasks:
+  - name: install mariadb
+    yum:
+     name: mariadb-server
+     state: present
+  - name: activation mariadb
+    systemd:
+     name: mariadb
+     state: started
+     enable: yes
