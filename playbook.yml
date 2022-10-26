@@ -8,8 +8,11 @@
   tasks:
   - name: install mariadb
     yum:
-     name: mariadb-server
+     name: " {{ item }} "
      state: present
+    loop:
+     - mariadb-server
+     - python3-PyMySQL.noarch
   - name: activation mariadb
     systemd:
      name: mariadb
