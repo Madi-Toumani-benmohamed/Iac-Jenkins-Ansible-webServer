@@ -1,6 +1,6 @@
 ---
 
-- hosts: web
+- hosts: 172.25.18.46
   
   roles:
     - roles/nginx
