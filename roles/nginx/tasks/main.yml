@@ -4,7 +4,7 @@
   yum_repository: 
    name: epel
    description: EPEL YUM repo
-   baseur1: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+   
   
 - name: installer nginx
   yum:
