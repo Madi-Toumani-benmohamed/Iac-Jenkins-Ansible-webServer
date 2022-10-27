@@ -4,7 +4,7 @@
       }
       stage('Ansible') {
           ansiblePlaybook (
-            inventory: 'hosts.yal',
+            inventory: 'hosts.yml',
             playbook: 'playbook.yml',
             colorized: true,
         )
