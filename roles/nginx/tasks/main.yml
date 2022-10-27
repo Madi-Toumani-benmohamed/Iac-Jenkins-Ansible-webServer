@@ -1,9 +1,18 @@
 ---
 # tasks file for nginx
+
+
+- name: installer les repos
+  yum_repository: 
+  name: epel
+  description: EPEL YUM repo
+  baseur1: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+  
 - name: installer nginx
   yum:
    name: nginx
    state: present
+   
 - name: creation du repo /var/www/{{ item }}/html
   file:
    path: /var/www/{{ item }}/html
@@ -14,30 +23,35 @@
    recurse: yes
   loop:
    "{{ sites }}"
+   
 - name: creation des fichiers index1.html a partir d un modele
   template:
    src: index.j2
    dest: /var/www/{{ item }}/html/index.html
   loop:
    "{{ sites }}"
+   
 - name: creation des repertoires des sites web
   file:
    path: /etc/nginx/sites-{{ item }}
    state: directory
   loop:
    "{{ sites_ae }}"
+   
 - name: modification nginx.conf
   lineinfile:
    path: /etc/nginx/nginx.conf
    regexp: '^# Settings'
    insertbefore: '^# Settings'
    line: '     include  /etc/nginx/sites-enabled/*.conf;'
+   
 - name: creation du server block file
   template:
    src: site_conf.j2
    dest: /etc/nginx/sites-available/{{ item }}.conf
   loop:
    "{{ sites }}"
+   
 - name: activer les servers
   file:
    src: /etc/nginx/sites-available/{{ item }}.conf
