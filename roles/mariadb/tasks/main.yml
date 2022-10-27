@@ -7,7 +7,7 @@
    state: present
   loop:
    - mariadb-server
-   - python3-PyMySQL.noarch
+   - python2-PyMySQL.noarch
 - name: activation mariadb
   systemd:
    name: mariadb
