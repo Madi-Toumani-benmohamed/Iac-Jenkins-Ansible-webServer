@@ -1,10 +1,18 @@
 ---
 # tasks file for nginx
-- name: installer les repos
-  yum_repository: 
-   name: epel
-   description: EPEL YUM repo
-   
+- name: Enable EPEL Repository on CentOS 8
+  dnf:
+   name: epel-release
+   state: latest
+   become: True
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts ['distribution_major_version'] == '8'
+
+- name: Enable EPEL Repository on CentOS 7
+  yum:
+   name: epel-release
+   state: latest
+   become: True
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts ['distribution_major_version'] == '7'
   
 - name: installer nginx
   yum:
