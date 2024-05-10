@@ -36,7 +36,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/votre-utilisateur/votre-projet.git'
+                git 'https://github.com/'
             }
         }
         stage('Build') {
