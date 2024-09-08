@@ -26,44 +26,7 @@ Configuration de Jenkins
 
 Création du fichier Jenkinsfile
 
-Voici un exemple de contenu pour un fichier Jenkinsfile :
 
-```sh
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/'
-            }
-        }
-        stage('Build') {
-            steps {
-                // Ajoutez les étapes de construction de votre application
-            }
-        }
-        stage('Test') {
-            steps {
-                // Ajoutez les étapes de test de votre application
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'ansible-playbook -i inventory playbook.yml'
-            }
-        }
-    }
-
-    post {
-        always {
-            // Ajoutez des étapes de nettoyage ou de notification si nécessaire
-        }
-    }
-}
-
-```
 # Exécution de la pipeline
 
     Lorsque vous avez terminé de configurer votre projet Jenkins et votre fichier Jenkinsfile, déclenchez la pipeline en appuyant sur le bouton de construction dans l'interface Jenkins.
